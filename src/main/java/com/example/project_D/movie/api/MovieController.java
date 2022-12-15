@@ -1,8 +1,6 @@
 package com.example.project_D.movie.api;
 
 import com.example.project_D.movie.entity.Movie;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;

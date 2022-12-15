@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.stereotype.Repository;
 
 @Setter @Getter @ToString
 @AllArgsConstructor
@@ -17,13 +16,6 @@ public class Movie {
     private String showTm; //상영시간
     private String openDt; //상영일
 
-    public Movie() {
-        this.movieCd = getMovieCd();
-        this.movieNm = getMovieNm();
-        this.directors = getDirectors();
-        this.actors = getActors();
-        this.showTm = getShowTm();
-        this.openDt = getOpenDt();
-    }
+    public Movie() {}
 
 }
