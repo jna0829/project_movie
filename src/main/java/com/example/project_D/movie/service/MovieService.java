@@ -11,20 +11,18 @@ import java.util.List;
 
 @Service
 @Slf4j
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class MovieService {
 
     private final MovieRepository repository;
 
-    public ListAllDTO listAllServ(){
-
-        List<Movie> movieList = repository.listAll();
-
-        ListAllDTO listAllDTO = new ListAllDTO(movieList);
-
-        return listAllDTO;
+    public MovieService(MovieRepository repository) {
+        this.repository = repository;
     }
 
+    public ListAllDTO listAllServ(){
 
+        return new ListAllDTO(repository.listAll());
+    }
 
 }

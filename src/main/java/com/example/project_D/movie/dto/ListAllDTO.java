@@ -11,8 +11,8 @@ import java.util.List;
 @AllArgsConstructor
 public class ListAllDTO {
 
-    private int count; //영화 리스트의 개수
-    private List<Movie> movieList;
+    private int count; //영화 목록의 개수
+    private List<Movie> movieList; // 영화 목록
 
     public ListAllDTO(List<Movie> movieList){
         this.count = movieList.size();
