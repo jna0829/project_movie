@@ -11,6 +11,13 @@ import java.util.List;
 @AllArgsConstructor
 public class ListAllDTO {
 
+    private String movieCd; //영화 코드번호
+    private String movieNm; //영화 타이틀
+    private String directors; //감독
+    private String actors; //주연배우
+    private String showTm; //상영시간
+    private String openDt; //상영일
+
     private int count; //영화 목록의 개수
     private List<Movie> movieList; // 영화 목록
 
@@ -33,4 +40,14 @@ public class ListAllDTO {
                 new Movie("20217905", "데시벨", "황인호", "김래원","109","2022-11-16")
         );
     }
+
+    public ListAllDTO(Movie movie){
+        this.movieCd = movie.getMovieCd();
+        this.movieNm = movie.getMovieNm();
+        this.directors = movie.getDirectors();
+        this.actors = movie.getActors();
+        this.showTm = movie.getShowTm();
+        this.openDt = movie.getOpenDt();
+    }
+
 }

@@ -8,7 +8,7 @@ import java.util.List;
 @Mapper
 public interface MovieRepository {
 
-    // 영화정보 조회하는 기능
+    // 영화정보 목록 조회하는 기능
     List<Movie> listAll();
 
     // 영화코드를 통해서 개별 영화정보 조회하기

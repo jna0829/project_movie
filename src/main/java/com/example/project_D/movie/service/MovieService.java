@@ -25,4 +25,13 @@ public class MovieService {
         return new ListAllDTO(repository.listAll());
     }
 
+    public ListAllDTO findOneServ(String movieCd) {
+
+        Movie movie = repository.findOne(movieCd);
+        log.info("findOneServ return data - {}", movie);
+
+
+        return movie != null ? new ListAllDTO(movie) : null;
+    }
+
 }

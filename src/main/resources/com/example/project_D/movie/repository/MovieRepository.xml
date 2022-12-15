@@ -10,6 +10,12 @@
         FROM tbl_movie
     </select>
 
+    <select id="findOne" resultType="com.example.project_D.movie.entity.Movie">
+        SELECT movieCd, movieNm, directors, actors, showTm, openDt
+        FROM tbl_movie
+        WHERE movieCd=#{movieCd}
+    </select>
+
 </mapper>
 
 
