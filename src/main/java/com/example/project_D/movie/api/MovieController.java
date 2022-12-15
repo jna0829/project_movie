@@ -17,7 +17,7 @@ public class MovieController {
 
     @GetMapping
     public ResponseEntity<?> movies(){
-        log.info("/api/movie GET request!");
+        log.info("/movie GET request!");
         return ResponseEntity.ok().body(service.listAllServ());
     }
 
