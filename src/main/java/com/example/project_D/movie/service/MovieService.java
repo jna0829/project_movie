@@ -20,11 +20,13 @@ public class MovieService {
         this.repository = repository;
     }
 
+    // 영화 목록 전체 보기
     public ListAllDTO listAllServ(){
 
         return new ListAllDTO(repository.listAll());
     }
 
+    // 영화 개별 정보 보기
     public ListAllDTO findOneServ(String movieCd) {
 
         Movie movie = repository.findOne(movieCd);
@@ -33,5 +35,21 @@ public class MovieService {
 
         return movie != null ? new ListAllDTO(movie) : null;
     }
+
+    // 영화 정보 등록 하기
+    public ListAllDTO addServ(Movie newMovie){
+
+        if(newMovie == null){
+            log.warn("newMovie cannot be null!");
+            throw new RuntimeException("newMovie cannot be null!");
+        }
+
+        boolean flag = repository.add(newMovie);
+        if (flag) log.info("새로운 영화정보 [MoveNm: {}]가 저장되었습니다.",newMovie.getMovieNm());
+
+        return flag ? listAllServ() : null;
+    }
+
+
 
 }

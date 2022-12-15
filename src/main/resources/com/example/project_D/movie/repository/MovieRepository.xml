@@ -16,6 +16,13 @@
         WHERE movieCd=#{movieCd}
     </select>
 
+    <insert id="add">
+        INSERT INTO tbl_movie
+            (movieCd, movieNm, directors, actors, showTm, openDt)
+        VALUES
+            (#{movieCd}, #{movieNm}, #{directors}, #{actors}, #{showTm}, #{openDt})
+    </insert>
+
 </mapper>
 
 

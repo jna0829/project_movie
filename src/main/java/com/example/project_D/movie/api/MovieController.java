@@ -1,6 +1,7 @@
 package com.example.project_D.movie.api;
 
 import com.example.project_D.movie.dto.ListAllDTO;
+import com.example.project_D.movie.entity.Movie;
 import com.example.project_D.movie.service.MovieService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,6 +35,23 @@ public class MovieController {
 
         return ResponseEntity.ok().body(dto);
     }
+
+    @PostMapping
+    public ResponseEntity<?> add(@RequestBody Movie newMovie){
+        log.info("/movie POST request! - {}", newMovie);
+        try{
+            ListAllDTO dto = service.addServ(newMovie);
+
+            if(dto == null){
+                return ResponseEntity.notFound().build();
+            }
+            return ResponseEntity.ok().body(dto);
+        }catch (RuntimeException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
+    }
+
 
 
 }

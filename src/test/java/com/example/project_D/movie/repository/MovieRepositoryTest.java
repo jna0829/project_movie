@@ -27,4 +27,36 @@ class MovieRepositoryTest {
         assertNotNull(movieList);
     }
 
+    @Test
+    @DisplayName("영화코드가 20227762 일때 영화제목이 올빼미여야 한다.")
+    void findOneTest(){
+        //given
+        String movieCd = "20227762";
+
+        //when
+        Movie movie = repository.findOne(movieCd);
+
+        //then
+        assertEquals("올빼미", movie.getMovieNm());
+
+    }
+
+    @Test
+    @DisplayName("새로운 영화를 등록했을때 전체 목록의 개수가 1개여야 한다.")
+    void  addTest(){
+        // given (테스트 시 필요한 데이터)
+        Movie newMovie = new Movie("20227762", "올빼미", "안태진", "류준열","118","2022-11-23");
+
+        // when (테스트의 실제 상황)
+        boolean flag = repository.add(newMovie);
+        List<Movie> movieList = repository.listAll();
+
+        // then (테스트 결과 단언)
+        assertTrue(flag);
+        assertEquals(1,movieList.size());
+
+    }
+
+
+
 }
