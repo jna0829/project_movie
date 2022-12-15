@@ -5,4 +5,9 @@
 
 <mapper namespace="com.example.project_D.movie.repository.MovieRepository">
 
+    <select id="listAll" resultType="com.example.project_D.movie.entity.Movie">
+        SELECT movieCd, movieNm, directors, actors, showTm, openDt
+        FROM tbl_movie
+    </select>
+
 </mapper>
