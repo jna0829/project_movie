@@ -5,14 +5,13 @@ import lombok.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 @Setter @Getter @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@RestController
+//@RestController
 public class ListAllDTO {
 
     private String movieCd; //영화 코드번호
@@ -30,7 +29,7 @@ public class ListAllDTO {
         this.movieList();
     }
 
-    @GetMapping("/movie-list")
+//    @GetMapping("/movie-list")
     public List<Movie> movieList() {
         return Arrays.asList(
                 new Movie("20227762", "올빼미", "안태진", "류준열","118","2022-11-23"),
@@ -45,7 +44,6 @@ public class ListAllDTO {
                 new Movie("20217905", "데시벨", "황인호", "김래원","109","2022-11-16")
         );
     }
-
 
     public ListAllDTO(Movie movie){
         this.movieCd = movie.getMovieCd();

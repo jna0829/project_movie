@@ -23,7 +23,7 @@ class MovieRepositoryTest {
         // when (테스트의 실제 상황)
         List<Movie> movieList = repository.listAll();
 
-        // then (테스트 결과 단언)
+        // then (테스트 결과 / 단언)
         assertNotNull(movieList);
     }
 
@@ -42,19 +42,17 @@ class MovieRepositoryTest {
     }
 
     @Test
-    @DisplayName("새로운 영화를 등록했을때 전체 목록의 개수가 1개여야 한다.")
+    @DisplayName("새로운 영화를 등록했을때 등록을 성공해야 한다.")
     void  addTest(){
-        // given (테스트 시 필요한 데이터)
-        Movie newMovie = new Movie("20227762", "올빼미", "안태진", "류준열","118","2022-11-23");
+        // given
+        Movie newMovie = new Movie("20228313", "오늘 밤, 세계에서 이 사랑이 사라진다 해도", "미키 타카히로", "미치에다 슌스케","121","2022-11-30");
 
-        // when (테스트의 실제 상황)
+        // when
         boolean flag = repository.add(newMovie);
         List<Movie> movieList = repository.listAll();
 
-        // then (테스트 결과 단언)
+        // then
         assertTrue(flag);
-        assertEquals(1,movieList.size());
-
     }
 
 

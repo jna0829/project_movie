@@ -11,14 +11,10 @@ import java.util.List;
 
 @Service
 @Slf4j
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 public class MovieService {
 
     private final MovieRepository repository;
-
-    public MovieService(MovieRepository repository) {
-        this.repository = repository;
-    }
 
     // 영화 목록 전체 보기
     public ListAllDTO listAllServ(){

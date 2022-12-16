@@ -7,17 +7,17 @@
 
     <select id="listAll" resultType="com.example.project_D.movie.entity.Movie">
         SELECT movieCd, movieNm, directors, actors, showTm, openDt
-        FROM tbl_movie
+        FROM movie
     </select>
 
     <select id="findOne" resultType="com.example.project_D.movie.entity.Movie">
         SELECT movieCd, movieNm, directors, actors, showTm, openDt
-        FROM tbl_movie
+        FROM movie
         WHERE movieCd=#{movieCd}
     </select>
 
     <insert id="add">
-        INSERT INTO tbl_movie
+        INSERT INTO movie
             (movieCd, movieNm, directors, actors, showTm, openDt)
         VALUES
             (#{movieCd}, #{movieNm}, #{directors}, #{actors}, #{showTm}, #{openDt})
