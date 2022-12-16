@@ -22,10 +22,10 @@ class LocalRepositoryTest {
         //given
 
         //when
-        List<LocalDTO> localDTOList = repository.findAll();
+        List<LocalDTO> localList = repository.findAll();
 
         //then
-        assertNotNull(localDTOList);
+        assertNotNull(localList);
 
     }
 

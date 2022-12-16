@@ -5,6 +5,7 @@ import lombok.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,12 +22,21 @@ public class ListAllDTO {
     private String showTm; //상영시간
     private String openDt; //상영일
 
+    public ListAllDTO(Movie movie){
+        this.movieCd = movie.getMovieCd();
+        this.movieNm = movie.getMovieNm();
+        this.directors = movie.getDirectors();
+        this.actors = movie.getActors();
+        this.showTm = movie.getShowTm();
+        this.openDt = movie.getOpenDt();
+    }
+
     private int count; //영화 목록의 개수
-    private List<Movie> movieList; // 영화 목록
+    private List<ListAllDTO> movielist; // 영화 목록
 
     public ListAllDTO(List<Movie> movieList){
         this.count = movieList.size();
-        this.movieList();
+        this.MovieDTOList(movieList);
     }
 
 //    @GetMapping("/movie-list")
@@ -45,13 +55,13 @@ public class ListAllDTO {
         );
     }
 
-    public ListAllDTO(Movie movie){
-        this.movieCd = movie.getMovieCd();
-        this.movieNm = movie.getMovieNm();
-        this.directors = movie.getDirectors();
-        this.actors = movie.getActors();
-        this.showTm = movie.getShowTm();
-        this.openDt = movie.getOpenDt();
+    public void MovieDTOList(List<Movie> movieList){
+        List<ListAllDTO> movies = new ArrayList<>();
+
+        for (Movie list : movieList){
+            movies.add(new ListAllDTO(list));
+        }
+        this.movielist = movies;
     }
 
 }
