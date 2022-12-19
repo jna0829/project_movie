@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.project_D.location.repository.LocationRepository">
+
+    <insert id="save">
+        INSERT INTO tbl_location
+            (LocationID, LocationNm)
+        VALUES
+            (#{LocationID}, #{LocationNm})
+    </insert>
+
+    <select id="findAll" resultType="com.example.project_D.location.entity.Location">
+        SELECT LocationID, LocationNm
+        FROM tbl_location
+    </select>
+
+    <select id="findOne" resultType="com.example.project_D.location.entity.Location">
+        SELECT LocationID, LocationNm
+        FROM tbl_location
+        WHERE LocationID=#{LocationID}
+    </select>
+
+    <update id="modify">
+        UPDATE tbl_location
+        SET LocationNm=#{LocationNm}
+        WHERE LocationID=#{LocationID}
+    </update>
+
+    <delete id="remove">
+        DELETE FROM tbl_location
+        WHERE LocationID=#{LocationID}
+    </delete>
+
+</mapper>
