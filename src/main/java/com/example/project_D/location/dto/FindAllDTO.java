@@ -29,6 +29,4 @@ public class FindAllDTO {
         this.locDTOList = dtos;
     }
 
-
-
 }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.project_D.theater.repository.TheaterRepository">
+
+    <insert id="save">
+        INSERT INTO tbl_theater
+            (TheaterID, TheaterNm, Address, Tell, LocationID)
+        VALUES
+            (#{TheaterID}, #{TheaterNm}, #{Address}, #{Tell}, #{LocationID})
+    </insert>
+
+    <select id="findAll" resultType="com.example.project_D.theater.entity.Theater">
+        SELECT TheaterID, TheaterNm, Address, Tell, LocationID
+        FROM tbl_theater
+        WHERE LocationID=#{LocationID}
+    </select>
+
+    <select id="findOne" resultType="com.example.project_D.theater.entity.Theater">
+        SELECT TheaterID, TheaterNm, Address, Tell, LocationID
+        FROM tbl_theater
+        WHERE TheaterID=#{TheaterID}
+    </select>
+
+    <update id="modify">
+        UPDATE tbl_theater
+        SET TheaterNm=#{TheaterNm}, Address=#{Address}, Tell=#{Tell}
+        WHERE TheaterID=#{TheaterID}
+    </update>
+
+    <delete id="remove">
+        DELETE FROM tbl_theater
+        WHERE TheaterID=#{TheaterID}
+    </delete>
+
+</mapper>

@@ -12,7 +12,6 @@ public class LocationDTO {
     private String LocationNm; // 지역 이름
 
     public LocationDTO(Location location){
-        this.LocationID = location.getLocationID();
         this.LocationNm = location.getLocationNm();
     }
 

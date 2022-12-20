@@ -29,7 +29,7 @@ class LocationRepositoryTest {
     }
 
     @Test
-    @DisplayName("지역목록을 조회했을때 목록의 개수가 2개여야 한다.")
+    @DisplayName("지역목록을 조회했을때 목록의 개수가 5개여야 한다.")
     void findAllTest() {
         // given
 
@@ -37,7 +37,7 @@ class LocationRepositoryTest {
         List<Location> locList = repository.findAll();
 
         // then
-        assertEquals(2, locList.size());
+        assertEquals(5, locList.size());
         assertNotNull(locList);
     }
 
