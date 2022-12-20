@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.project_D.screen.repository.ScreenRepository">
+
+    <insert id="save">
+        INSERT INTO tbl_screen
+            (ScreenID, ScreenNm, ScreenSeat, TheaterID)
+        VALUES
+            (#{ScreenID}, #{ScreenNm}, #{ScreenSeat}, #{TheaterID})
+    </insert>
+
+    <select id="findAll" resultType="com.example.project_D.screen.entity.Screen">
+        SELECT ScreenID, ScreenNm, ScreenSeat, TheaterID
+        FROM tbl_screen
+        WHERE TheaterID=#{TheaterID}
+    </select>
+
+    <select id="findOne" resultType="com.example.project_D.screen.entity.Screen">
+        SELECT ScreenID, ScreenNm, ScreenSeat, TheaterID
+        FROM tbl_screen
+        WHERE ScreenID=#{ScreenID}
+    </select>
+
+    <update id="modify">
+        UPDATE tbl_screen
+        SET ScreenNm=#{ScreenNm}, ScreenSeat=#{ScreenSeat}
+        WHERE ScreenID=#{ScreenID}
+    </update>
+
+    <delete id="remove">
+        DELETE FROM tbl_screen
+        WHERE ScreenID=#{ScreenID}
+    </delete>
+
+</mapper>

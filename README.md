@@ -4,7 +4,5 @@
 1. 지역 - Location
 2. 지점 - Theater
 3. 영화관 - Screen
-4. 좌석 - 
-
-
+4. 좌석 - Seat
 
