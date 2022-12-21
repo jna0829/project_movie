@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.project_D.seat.repository.SeatRepository">
+
+    <insert id="save">
+        INSERT INTO tbl_seat
+        (SeatID, SeatNum, SeatState, ScreenID)
+        VALUES
+        (#{SeatID}, #{SeatNum}, #{SeatState}, #{ScreenID})
+    </insert>
+
+    <select id="findAll" resultType="com.example.project_D.seat.entity.Seat">
+        SELECT SeatID, SeatNum, SeatState, ScreenID
+        FROM tbl_seat
+        WHERE ScreenID=#{ScreenID}
+    </select>
+
+    <select id="findOne" resultType="com.example.project_D.seat.entity.Seat">
+        SELECT SeatID, SeatNum, SeatState, ScreenID
+        FROM tbl_seat
+        WHERE SeatID=#{SeatID}
+    </select>
+
+    <update id="modify">
+        UPDATE tbl_seat
+        SET SeatNum=#{SeatNum}, SeatState=#{SeatState}, ScreenID=#{ScreenID}
+        WHERE SeatID=#{SeatID}
+    </update>
+
+    <delete id="remove">
+        DELETE FROM tbl_seat
+        WHERE SeatID=#{SeatID}
+    </delete>
+
+</mapper>
