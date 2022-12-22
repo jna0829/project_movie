@@ -15,8 +15,8 @@ public class SeatService {
 
     private final SeatRepository repository;
 
-    public FindAllDTO findAllServ(String ScreenID) {
-        return new FindAllDTO(repository.findAll(ScreenID));
+    public FindAllDTO findAllServ(String ScreenCD) {
+        return new FindAllDTO(repository.findAll(ScreenCD));
     }
 
     public SeatDTO findOneServ(String id) {
@@ -33,22 +33,22 @@ public class SeatService {
 
         boolean flag = repository.save(newSeat);
         if (flag) log.info("새로운 좌석 [Id: {}]이 저장되었습니다.", newSeat.getSeatID());
-        return flag ? findAllServ(newSeat.getScreenID()) : null;
+        return flag ? findAllServ(newSeat.getScreenCD()) : null;
     }
 
     public FindAllDTO update(Seat seat) {
         boolean flag = repository.modify(seat);
-        return flag ? findAllServ(seat.getScreenID()) : new FindAllDTO();
+        return flag ? findAllServ(seat.getScreenCD()) : new FindAllDTO();
     }
 
-    public FindAllDTO deleteServ(String id, String ScreenID) {
+    public FindAllDTO deleteServ(String id, String ScreenCD) {
         boolean flag = repository.remove(id);
 
         if (!flag) {
             log.warn("delete fail!! not found id [{}]", id);
             throw new RuntimeException("delete fail!");
         }
-        return findAllServ(ScreenID);
+        return findAllServ(ScreenCD);
     }
 
 }

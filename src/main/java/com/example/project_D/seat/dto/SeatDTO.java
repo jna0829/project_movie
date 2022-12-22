@@ -13,6 +13,7 @@ public class SeatDTO {
     private String SeatState;
 
     public SeatDTO(Seat seat) {
+        this.SeatID = seat.getSeatID();
         this.SeatNum = seat.getSeatNum();
         this.SeatState = seat.getSeatState();
     }

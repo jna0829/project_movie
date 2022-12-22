@@ -19,9 +19,9 @@ public class SeatController {
     private final SeatService service;
 
     @GetMapping
-    public ResponseEntity<?> seat(String ScreenID) {
+    public ResponseEntity<?> seat(String ScreenCD) {
         log.info("/api/seat GET request!");
-        return ResponseEntity.ok().body(service.findAllServ(ScreenID));
+        return ResponseEntity.ok().body(service.findAllServ(ScreenCD));
     }
 
     @GetMapping("/{id}")
@@ -36,9 +36,9 @@ public class SeatController {
 
     @PostMapping
     public ResponseEntity<?> create(Seat newSeat,
-                                    String ScreenID) {
-        newSeat.setScreenID(ScreenID);
-        log.info("/api/seat POST request! - {}", ScreenID);
+                                    String ScreenCD) {
+        newSeat.setScreenCD(ScreenCD);
+        log.info("/api/seat POST request! - {}", ScreenCD);
 
         try {
             FindAllDTO dto = service.createServ(newSeat);
@@ -53,8 +53,8 @@ public class SeatController {
 
     @PutMapping
     public ResponseEntity<?> delete(@RequestBody Seat seat,
-                                    String ScreenID) {
-        seat.setScreenID(ScreenID);
+                                    String ScreenCD) {
+        seat.setScreenCD(ScreenCD);
         log.info("/api/seat PUT request! - {}", seat);
 
         try {
@@ -67,10 +67,10 @@ public class SeatController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable String id,
-                                    String ScreenID) {
+                                    String ScreenCD) {
         log.info("/api/seat/{} DELETE request!", id);
         try {
-            FindAllDTO dto = service.deleteServ(id, ScreenID);
+            FindAllDTO dto = service.deleteServ(id, ScreenCD);
             return ResponseEntity.ok().body(dto);
         } catch (Exception e) {
             return ResponseEntity.notFound().build();

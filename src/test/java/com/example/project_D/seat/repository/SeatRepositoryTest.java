@@ -19,7 +19,10 @@ class SeatRepositoryTest {
     @DisplayName("새로운 좌석을 등록했을 때 성공해야 한다.")
     void saveTest() {
         // given
-        Seat newSeat = new Seat("A2", "A-2", "0", "S1");
+        Seat newSeat = new Seat();
+        newSeat.setSeatNum("A2");
+        newSeat.setSeatState("0");
+        newSeat.setScreenCD("S1");
 
         // when
         boolean flag = repository.save(newSeat);
@@ -32,36 +35,37 @@ class SeatRepositoryTest {
     @DisplayName("1관을 조회했을때 좌석의 개수가 2개여야 한다.")
     void findAllTest() {
         // given
-        String ScreenID = "S1";
+        String ScreenCD = "S1";
 
         // when
-        List<Seat> seatList = repository.findAll(ScreenID);
+        List<Seat> seatList = repository.findAll(ScreenCD);
 
         // then
         assertEquals(2, seatList.size());
     }
 
     @Test
-    @DisplayName("아이디 A1을 조회했을때 좌석 이름은 A-1이여야 한다.")
+    @DisplayName("아이디를 조회했을때 좌석 이름은 A1이여야 한다.")
     void findOneTest() {
         // given
-        String SeatID = "A1";
+        String SeatID = "5d852acf-f806-4895-a9ea-76b1169eca9d";
 
         // when
         Seat seat = repository.findOne(SeatID);
 
         // then
-        assertEquals("A-1", seat.getSeatNum());
+        assertEquals("A1", seat.getSeatNum());
     }
 
     @Test
-    @DisplayName("아이디 A1의 좌석상태를 1로 수정해야 한다.")
+    @DisplayName("A1의 좌석상태를 1로 수정해야 한다.")
     void modifyTest() {
         // given
         Seat seat = new Seat();
-        seat.setSeatID("A1");
-        seat.setSeatNum("A-1");
+        seat.setSeatID("5d852acf-f806-4895-a9ea-76b1169eca9d");
+        seat.setSeatNum("A1");
         seat.setSeatState("1");
+        seat.setScreenCD("S1");
 
         // when
         boolean flag = repository.modify(seat);
@@ -71,10 +75,10 @@ class SeatRepositoryTest {
     }
 
     @Test
-    @DisplayName("아이디 A1을 삭제한 후 다시 조회했을때 null이 나와야 한다.")
+    @DisplayName("A1의 아이디를 삭제한 후 다시 조회했을때 null이 나와야 한다.")
     void removeTest() {
         // given
-        String SeatID = "A2";
+        String SeatID = "5d852acf-f806-4895-a9ea-76b1169eca9d";
 
         // when
         boolean flag = repository.remove(SeatID);

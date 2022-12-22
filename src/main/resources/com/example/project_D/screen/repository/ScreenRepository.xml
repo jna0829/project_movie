@@ -7,26 +7,26 @@
 
     <insert id="save">
         INSERT INTO tbl_screen
-            (ScreenID, ScreenNm, ScreenSeat, TheaterID)
+            (ScreenID, ScreenCD, ScreenNm, ScreenSeat, TheaterID)
         VALUES
-            (#{ScreenID}, #{ScreenNm}, #{ScreenSeat}, #{TheaterID})
+            (#{ScreenID}, #{ScreenCD}, #{ScreenNm}, #{ScreenSeat}, #{TheaterID})
     </insert>
 
     <select id="findAll" resultType="com.example.project_D.screen.entity.Screen">
-        SELECT ScreenID, ScreenNm, ScreenSeat, TheaterID
+        SELECT ScreenID, ScreenCD, ScreenNm, ScreenSeat, TheaterID
         FROM tbl_screen
         WHERE TheaterID=#{TheaterID}
     </select>
 
     <select id="findOne" resultType="com.example.project_D.screen.entity.Screen">
-        SELECT ScreenID, ScreenNm, ScreenSeat, TheaterID
+        SELECT ScreenID, ScreenCD, ScreenNm, ScreenSeat, TheaterID
         FROM tbl_screen
-        WHERE ScreenID=#{ScreenID}
+        WHERE ScreenCD=#{ScreenCD}
     </select>
 
     <update id="modify">
         UPDATE tbl_screen
-        SET ScreenNm=#{ScreenNm}, ScreenSeat=#{ScreenSeat}
+        SET ScreenNm=#{ScreenNm}, ScreenSeat=#{ScreenSeat}, TheaterID=#{TheaterID}
         WHERE ScreenID=#{ScreenID}
     </update>
 
