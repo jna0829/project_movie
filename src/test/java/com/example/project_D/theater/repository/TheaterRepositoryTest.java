@@ -44,10 +44,10 @@ class TheaterRepositoryTest {
     }
 
     @Test
-    @DisplayName("아이디 01을 조회했을때 지점이름은 강변이여야 한다.")
+    @DisplayName("아이디 1-1을 조회했을때 지점이름은 강변이여야 한다.")
     void findOneTest() {
         // given
-        String TheaterID = "01";
+        String TheaterID = "1-1";
 
         // when
         Theater theater = repository.findOne(TheaterID);
