@@ -41,6 +41,10 @@ class TheaterRepositoryTest {
 
         // then
         assertEquals(2, theaterList.size());
+
+        for (Theater theater : theaterList) {
+            System.out.println("theater = " + theater);
+        }
     }
 
     @Test

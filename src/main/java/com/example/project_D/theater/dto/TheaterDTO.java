@@ -15,11 +15,11 @@ public class TheaterDTO {
     private String LocationID; //지역 ID(fk)
 
     public TheaterDTO(Theater theater) {
-        this.TheaterID = getTheaterID();
-        this.TheaterNm = getTheaterNm();
-        this.Address = getAddress();
-        this.Tell = getTell();
-        this.LocationID = getLocationID();
+        this.TheaterID = theater.getTheaterID();
+        this.TheaterNm = theater.getTheaterNm();
+        this.Address = theater.getAddress();
+        this.Tell = theater.getTell();
+        this.LocationID = theater.getLocationID();
     }
 
 }
