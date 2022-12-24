@@ -18,21 +18,21 @@ public class TheaterController {
 
     private final TheaterService service;
 
-    // 지점 전체조회 요청
-    @GetMapping
-    public ResponseEntity<?> theater(String LocationID) {
-        log.info("/api/theater GET request!");
-        return ResponseEntity.ok().body(service.findAllServ(LocationID));
+    // 지역별 지점 전체조회 요청
+    @GetMapping("/{locationId}")
+    public ResponseEntity<?> theater(@PathVariable String locationId) {
+        log.info("/api/theater/{locationId} GET request! - {}",  locationId);
+        return ResponseEntity.ok().body(service.findAllServ(locationId));
     }
 
     // 지점 개별조회 요청
-    @GetMapping("/{id}")
-    public ResponseEntity<?> findOne(String id) {
-        log.info("/api/theater/{} GET request!", id);
+    @GetMapping("/{locationId}/{theaterId}")
+    public ResponseEntity<?> findOne(@PathVariable String locationId, @PathVariable String theaterId) {
+        log.info("/api/theater/{}/{} GET request!", locationId, theaterId);
 
-        if (id == null) return ResponseEntity.badRequest().build();
+        if (theaterId == null) return ResponseEntity.badRequest().build();
 
-        TheaterDTO dto = service.findOneServ(id);
+        TheaterDTO dto = service.findOneServ(theaterId);
         if (dto == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok().body(dto);
     }

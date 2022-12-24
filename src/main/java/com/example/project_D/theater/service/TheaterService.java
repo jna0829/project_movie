@@ -16,8 +16,8 @@ public class TheaterService {
     private final TheaterRepository repository;
 
     // 지점 전체조회 기능
-    public FindAllDTO findAllServ(String locationID) {
-        return new FindAllDTO(repository.findAll(locationID));
+    public FindAllDTO findAllServ(String LocationID) {
+        return new FindAllDTO(repository.findAll(LocationID));
     }
 
     // 지점 생성 기능
@@ -49,14 +49,14 @@ public class TheaterService {
     }
 
     // 지점 삭제 기능
-    public FindAllDTO deleteServ(String id, String locationID) {
+    public FindAllDTO deleteServ(String id, String LocationID) {
         boolean flag = repository.remove(id);
 
         if (!flag) {
             log.warn("delete fail!! not found id [{}]", id);
             throw new RuntimeException("delete fail!");
         }
-        return findAllServ(locationID);
+        return findAllServ(LocationID);
     }
 
 }

@@ -11,8 +11,8 @@ public interface TheaterRepository {
     // 지점 생성 기능
     boolean save(Theater theater);
 
-    // 지점 전체조회 기능
-    List<Theater> findAll(String locationID);
+    // 지역별 지점 전체조회 기능
+    List<Theater> findAll(String LocationID);
 
     // 지점 개별조회 기능
     Theater findOne(String id);
