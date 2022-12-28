@@ -18,26 +18,27 @@ public class ScreenController {
 
     private final ScreenService service;
 
-    @GetMapping
-    public ResponseEntity<?> screen(String TheaterID) {
-        log.info("/api/screen GET request!");
-        return ResponseEntity.ok().body(service.findAllServ(TheaterID));
+    @GetMapping("/{theaterId}")
+    public ResponseEntity<?> screen(@PathVariable String theaterId) {
+        log.info("/api/screen/{theaterId} GET request! - {}",  theaterId);
+        return ResponseEntity.ok().body(service.findAllServ(theaterId));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> findOne(@PathVariable String id) {
-        log.info("/api/screen/{} GET request!", id);
-        if (id == null) return ResponseEntity.badRequest().build();
+    @GetMapping("/{theaterId}/{screenID}")
+    public ResponseEntity<?> findOne(@PathVariable String theaterId,
+                                     @PathVariable String screenID) {
+        log.info("/api/screen/{}/{} GET request!", theaterId, screenID);
+        if (screenID == null) return ResponseEntity.badRequest().build();
 
-        ScreenDTO dto = service.findOneServ(id);
+        ScreenDTO dto = service.findOneServ(screenID);
         if (dto == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok().body(dto);
     }
 
-    @PostMapping
+    @PostMapping("/{theaterId}")
     public ResponseEntity<?> create(@RequestBody Screen newScreen,
-                                    String TheaterID) {
-        newScreen.setTheaterID(TheaterID);
+                                    @PathVariable String theaterId) {
+        newScreen.setTheaterID(theaterId);
         log.info("/api/screen POST request! - {}", newScreen);
 
         try {
@@ -53,10 +54,10 @@ public class ScreenController {
         }
     }
 
-    @PutMapping
+    @PutMapping("/{theaterId}")
     public ResponseEntity<?> delete(@RequestBody Screen screen,
-                                    String TheaterID) {
-        screen.setTheaterID(TheaterID);
+                                    @PathVariable String theaterId) {
+        screen.setTheaterID(theaterId);
         log.info("/api/screen PUT request! - {}", screen);
 
         try {
@@ -67,13 +68,13 @@ public class ScreenController {
         }
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable String id,
-                                    String TheaterID) {
-        log.info("/api/screen/{} DELETE request!", id);
+    @DeleteMapping("/{theaterId}/{screenId}")
+    public ResponseEntity<?> delete(@PathVariable String theaterId,
+                                    @PathVariable String screenId) {
+        log.info("/api/screen/{}/{} DELETE request!", theaterId, screenId);
 
         try {
-            FindAllDTO dto = service.deleteServ(id, TheaterID);
+            FindAllDTO dto = service.deleteServ(theaterId, screenId);
             return ResponseEntity.ok().body(dto);
         } catch (Exception e) {
             return ResponseEntity.notFound().build();

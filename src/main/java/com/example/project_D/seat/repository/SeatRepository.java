@@ -9,7 +9,7 @@ import java.util.List;
 public interface SeatRepository {
 
     // 좌석 전체 조회
-    List<Seat> findAll(String ScreenCD);
+    List<Seat> findAll(String ScreenID);
 
     // 좌석 개별 조회
     Seat findOne(String id);

@@ -18,27 +18,29 @@ public class SeatController {
 
     private final SeatService service;
 
-    @GetMapping
-    public ResponseEntity<?> seat(String ScreenCD) {
-        log.info("/api/seat GET request!");
-        return ResponseEntity.ok().body(service.findAllServ(ScreenCD));
+    @GetMapping("/{screenID}")
+    public ResponseEntity<?> seat(@PathVariable String screenID) {
+        log.info("/api/seat GET request! - {}", screenID);
+        return ResponseEntity.ok().body(service.findAllServ(screenID));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> findOne(@PathVariable String id) {
-        log.info("/api/seat/{} GET request!", id);
-        if (id == null) return ResponseEntity.badRequest().build();
-        SeatDTO dto = service.findOneServ(id);
+    @GetMapping("/{screenID}/{seatId}")
+    public ResponseEntity<?> findOne(@PathVariable String screenID,
+                                     @PathVariable String seatId) {
+        log.info("/api/seat/{}/{} GET request!", screenID, seatId);
+        if (seatId == null) return ResponseEntity.badRequest().build();
+        SeatDTO dto = service.findOneServ(seatId);
+
 
         if (dto == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok().body(dto);
     }
 
-    @PostMapping
-    public ResponseEntity<?> create(Seat newSeat,
-                                    String ScreenCD) {
-        newSeat.setScreenCD(ScreenCD);
-        log.info("/api/seat POST request! - {}", ScreenCD);
+    @PostMapping("/{screenID}")
+    public ResponseEntity<?> create(@RequestBody Seat newSeat,
+                                    @PathVariable String screenID) {
+        newSeat.setScreenID(screenID);
+        log.info("/api/seat POST request! - {}", screenID);
 
         try {
             FindAllDTO dto = service.createServ(newSeat);
@@ -51,10 +53,10 @@ public class SeatController {
         }
     }
 
-    @PutMapping
+    @PutMapping("/{screenID}")
     public ResponseEntity<?> delete(@RequestBody Seat seat,
-                                    String ScreenCD) {
-        seat.setScreenCD(ScreenCD);
+                                    @PathVariable String screenID) {
+        seat.setScreenID(screenID);
         log.info("/api/seat PUT request! - {}", seat);
 
         try {
@@ -65,12 +67,12 @@ public class SeatController {
         }
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable String id,
-                                    String ScreenCD) {
-        log.info("/api/seat/{} DELETE request!", id);
+    @DeleteMapping("/{screenID}/{seatId}")
+    public ResponseEntity<?> delete(@PathVariable String seatId,
+                                    @PathVariable String screenID) {
+        log.info("/api/seat/{}/{} DELETE request!", screenID, seatId);
         try {
-            FindAllDTO dto = service.deleteServ(id, ScreenCD);
+            FindAllDTO dto = service.deleteServ(screenID, seatId);
             return ResponseEntity.ok().body(dto);
         } catch (Exception e) {
             return ResponseEntity.notFound().build();

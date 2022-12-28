@@ -49,10 +49,10 @@ class ScreenRepositoryTest {
     @DisplayName("코드 S1을 조회했을때 영화관 이름은 1관 이여야 한다.")
     void findOneTest() {
         // given
-        String ScreenCD = "S1";
+        String ScreenID = "1-1-S1";
 
         // when
-        Screen screen = repository.findOne(ScreenCD);
+        Screen screen = repository.findOne(ScreenID);
 
         // then
         assertEquals("1관", screen.getScreenNm());

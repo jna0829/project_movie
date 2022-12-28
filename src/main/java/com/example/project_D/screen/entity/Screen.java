@@ -14,8 +14,4 @@ public class Screen {
     private int ScreenSeat; // 영화관 좌석수
     private String TheaterID; //지점 ID(fk)
 
-    public Screen() {
-        this.ScreenID = UUID.randomUUID().toString();
-    }
-
 }

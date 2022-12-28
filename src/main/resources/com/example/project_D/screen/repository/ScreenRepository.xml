@@ -21,7 +21,7 @@
     <select id="findOne" resultType="com.example.project_D.screen.entity.Screen">
         SELECT ScreenID, ScreenCD, ScreenNm, ScreenSeat, TheaterID
         FROM tbl_screen
-        WHERE ScreenCD=#{ScreenCD}
+        WHERE ScreenID=#{ScreenID}
     </select>
 
     <update id="modify">

@@ -27,7 +27,8 @@ public class TheaterController {
 
     // 지점 개별조회 요청
     @GetMapping("/{locationId}/{theaterId}")
-    public ResponseEntity<?> findOne(@PathVariable String locationId, @PathVariable String theaterId) {
+    public ResponseEntity<?> findOne(@PathVariable String locationId,
+                                     @PathVariable String theaterId) {
         log.info("/api/theater/{}/{} GET request!", locationId, theaterId);
 
         if (theaterId == null) return ResponseEntity.badRequest().build();
@@ -38,10 +39,10 @@ public class TheaterController {
     }
 
     // 지점 등록 요청
-    @PostMapping
+    @PostMapping("/{locationId}")
     public ResponseEntity<?> create(@RequestBody Theater newTheater,
-                                    String LocationID) {
-        newTheater.setLocationID(LocationID);
+                                    @PathVariable String locationID) {
+        newTheater.setLocationID(locationID);
         log.info("/api/theater POST request! - {}", newTheater);
 
         try {
@@ -58,10 +59,10 @@ public class TheaterController {
     }
 
     // 지점 수정 기능
-    @PutMapping
+    @PutMapping("/{locationId}")
     public ResponseEntity<?> delete(@RequestBody Theater theater,
-                                    String LocationID) {
-        theater.setLocationID(LocationID);
+                                    @PathVariable String locationID) {
+        theater.setLocationID(locationID);
         log.info("/api/theater PUT request! - {}", theater);
 
         try {
@@ -73,13 +74,13 @@ public class TheaterController {
     }
 
     // 지점 삭제 기능
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable String id,
-                                    String LocationID) {
-        log.info("/api/theater/{} DELETE request!", id);
+    @DeleteMapping("/{locationId}/{theaterId}")
+    public ResponseEntity<?> delete(@PathVariable String locationId,
+                                    @PathVariable String theaterId) {
+        log.info("/api/theater/{}/{} DELETE request!", locationId, theaterId);
 
         try {
-            FindAllDTO dto = service.deleteServ(id, LocationID);
+            FindAllDTO dto = service.deleteServ(locationId, theaterId);
             return ResponseEntity.ok().body(dto);
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
